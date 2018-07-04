@@ -37,3 +37,21 @@ print(s)
 print("\n")
 print("-"*200)
 print("\n")
+
+#4-Clean up the following tweet so that it contains only the user’s message. That is, remove all URLs, hashtags, mentions, punctuations, RTs and CCs. 
+#tweet = '''Good advice! RT @TheNextWeb: What I would do differently if I was learning to code today http://t.co/lbwej0pxOd cc: @garybernhardt #rstats''' 
+#desired_output = 'Good advice What I would do differently if I was learning to code today'
+
+import re
+tweet = 'Good advice! RT @TheNextWeb: What I would do differently if I was learning to code today http://t.co/lbwej0pxOd cc: @garybernhardt #rstats'
+def cleaning_tweet(tweet):
+    tweet = re.sub('http\S+\s*', '', tweet)  # remove URLs
+    tweet = re.sub('RT', '', tweet)  # remove RT
+    tweet = re.sub('cc:','',tweet)   #remove cc
+    tweet = re.sub('#\S+', '', tweet)  # remove hashtags
+    tweet = re.sub('@\S+', '', tweet)  # remove mentions
+    tweet = re.sub('\s+', ' ', tweet)  # remove extra whitespace
+    tweet = re.sub('!','',tweet) #remove !
+    return tweet
+
+print(cleaning_tweet(tweet))
